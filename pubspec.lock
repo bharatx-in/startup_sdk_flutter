@@ -7,21 +7,21 @@ packages:
       name: bharatx_flutter_alternatedata
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.2-alpha1"
+    version: "1.0.2-release1"
   bharatx_flutter_common:
     dependency: "direct main"
     description:
       name: bharatx_flutter_common
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.3-alpha2"
+    version: "1.0.3-release1"
   bharatx_flutter_securityhelpers:
     dependency: "direct main"
     description:
       name: bharatx_flutter_securityhelpers
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.2-alpha2"
+    version: "1.0.2-release1"
   characters:
     dependency: transitive
     description:
