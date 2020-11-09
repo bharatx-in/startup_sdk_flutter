@@ -1,3 +1,8 @@
+## 1.0.3-release1
+
+* Finalize API Surface
+* Upgrade `securityhelpers`, `common` and `alternatedata` to release versions
+
 ## 1.0.3-alpha2
 
 * Edit description and repository url
