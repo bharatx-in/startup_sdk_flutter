@@ -21,7 +21,7 @@ packages:
       name: bharatx_flutter_securityhelpers
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.2-release1"
+    version: "1.0.2-release2"
   characters:
     dependency: transitive
     description:
