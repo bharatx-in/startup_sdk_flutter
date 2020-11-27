@@ -1,3 +1,8 @@
+## 1.0.5-release1
+
+* Upgrade `startup` Android SDK to 1.0.5
+* Upgrade `securityhelpers` and `common` to release versions
+
 ## 1.0.3-release1
 
 * Finalize API Surface
