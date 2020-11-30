@@ -14,7 +14,7 @@ packages:
       name: bharatx_flutter_common
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.0.5-release1"
+    version: "1.0.6-release1"
   bharatx_flutter_securityhelpers:
     dependency: "direct main"
     description:

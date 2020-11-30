@@ -18,7 +18,7 @@ class _MyAppState extends State<MyApp> {
     try {
       await BharatXStartupTierManager.initialize(
           "testPartnerId", "testApiKey", Colors.deepOrange);
-      BharatXCommonUtilManager.registerUserId("testUser3");
+      BharatXCommonUtilManager.registerUserId("testuser1");
       CreditInfo creditInfo = await BharatXCommonUtilManager.userCreditInfo;
       print("Credit Info ${creditInfo.creditTaken}/${creditInfo.creditLimit}");
       BharatXCommonUtilManager.confirmTransactionWithUser(10000, () {
