@@ -14,6 +14,13 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   void confirmTransactionWithUser() async {
     try {
+      BharatXTransactionManager.displayBharatXProgressDialog();
+      BharatXTransactionManager.getUserCreditInfo()
+          .then((value) => print(value.creditLimit));
+      BharatXTransactionManager.getUserCreditInfoFull()
+          .then((value) => print(value.currentCycleDueDate));
+      await Future.delayed(const Duration(milliseconds: 2000));
+      BharatXTransactionManager.closeBharatXProgressDialog();
       BharatXTransactionManager.registerUser({
         "phoneNumber": "+911234567890",
         "id": "user-200",

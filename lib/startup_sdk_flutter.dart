@@ -19,6 +19,24 @@ class BharatXTransactionManager {
     await _channel.invokeMethod('registerUser', userDetails);
   }
 
+  static Future<void> displayBharatXProgressDialog() async {
+    await _channel.invokeMethod('displayBharatXProgressDialog');
+  }
+
+  static Future<void> closeBharatXProgressDialog() async {
+    await _channel.invokeMethod('closeBharatXProgressDialog');
+  }
+
+  static Future<CreditInfo> getUserCreditInfo() async {
+    return CreditInfo.fromJson(
+        await _channel.invokeMethod('getUserCreditInfo'));
+  }
+
+  static Future<CreditInfoFull> getUserCreditInfoFull() async {
+    return CreditInfoFull.fromJson(
+        await _channel.invokeMethod('getUserCreditInfoFull'));
+  }
+
   static Future<void> confirmTransactionWithUser(
       int amountInPaise,
       String transactionId,
@@ -49,5 +67,38 @@ class BharatXTransactionManager {
     });
     await _channel.invokeMethod('confirmTransactionWithUser',
         {"amountInPaise": amountInPaise, "transactionId": transactionId});
+  }
+}
+
+class CreditInfo {
+  int creditTaken, creditLimit;
+
+  CreditInfo(this.creditTaken, this.creditLimit);
+
+  static CreditInfo fromJson(dynamic json) {
+    return CreditInfo(json['creditTaken'], json['creditLimit']);
+  }
+}
+
+class CreditInfoFull {
+  int creditTaken, creditLimit, totalOutstandingAmount, dueAmount;
+  String currentCycleDueDate, repaymentLink;
+
+  CreditInfoFull(
+      this.creditTaken,
+      this.creditLimit,
+      this.totalOutstandingAmount,
+      this.dueAmount,
+      this.currentCycleDueDate,
+      this.repaymentLink);
+
+  static CreditInfoFull fromJson(dynamic json) {
+    return CreditInfoFull(
+        json['creditTaken'],
+        json['creditLimit'],
+        json['totalOutstandingAmount'],
+        json['dueAmount'],
+        json['currentCycleDueDate'],
+        json['repaymentLink']);
   }
 }
