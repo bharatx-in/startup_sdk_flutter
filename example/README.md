@@ -1,6 +1,6 @@
-# bharatx_flutter_startup_example
+# startup_sdk_flutter_example
 
-Demonstrates how to use the bharatx_flutter_startup plugin.
+Demonstrates how to use the startup_sdk_flutter plugin.
 
 ## Getting Started
 

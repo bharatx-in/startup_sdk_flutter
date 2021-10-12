@@ -1,8 +1,8 @@
-name: bharatx_flutter_startup
+name: startup_sdk_flutter
 description: Flutter wrapper for Startup Tier from BharatX SDK
-version: 1.0.6-release1
+version: 3.1.2-release1
 homepage: https://bharatx.tech/
-repository: https://github.com/bharatx-in/bharatx_flutter_startup
+repository: https://github.com/bharatx-in/startup_sdk_flutter
 
 environment:
   sdk: ">=2.7.0 <3.0.0"
@@ -11,13 +11,10 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  bharatx_flutter_securityhelpers: 1.0.3-release1
-  bharatx_flutter_common: 1.0.6-release1
-  bharatx_flutter_alternatedata: 1.0.2-release1
 
 flutter:
   plugin:
     platforms:
       android:
-        package: tech.bharatx.bharatx_flutter_startup
+        package: tech.bharatx.startup_sdk_flutter
         pluginClass: BharatxFlutterStartupPlugin

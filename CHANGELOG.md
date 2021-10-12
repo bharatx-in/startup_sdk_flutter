@@ -1,3 +1,8 @@
+## 3.1.2-release1
+
+* Upgrade `startup` Android SDK to 3.1.2
+* This package no longer has other dependencies like `common`, `securityhelpers`
+
 ## 1.0.6-release1
 
 * Upgrade `startup` Android SDK to 1.0.6
