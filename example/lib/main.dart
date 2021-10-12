@@ -1,6 +1,4 @@
-import 'package:bharatx_flutter_alternatedata/bharatx_flutter_alternatedata.dart';
-import 'package:bharatx_flutter_common/bharatx_flutter_common.dart';
-import 'package:bharatx_flutter_startup/bharatx_flutter_startup.dart';
+import 'package:startup_sdk_flutter/startup_sdk_flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -16,25 +14,26 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   void confirmTransactionWithUser() async {
     try {
-      await BharatXStartupTierManager.initialize(
-          "testPartnerId", "testApiKey", Colors.deepOrange);
-      BharatXCommonUtilManager.registerUserId("testuser1");
-      CreditInfo creditInfo = await BharatXCommonUtilManager.userCreditInfo;
-      print("Credit Info ${creditInfo.creditTaken}/${creditInfo.creditLimit}");
-      BharatXCommonUtilManager.confirmTransactionWithUser(10000, () {
-        print("User Confirmed Transaction");
-        BharatXCommonUtilManager.registerTransactionId("transactionId", () {
-          BharatXCommonUtilManager.showTransactionStatusDialog(true, () {
-            print("Closed");
-          });
-        }, () {
-          print("Failed to register transaction ID");
-        });
-      }, () {
-        print("User Accepted Privacy Policy");
-        AlternateDataManager.register();
-      }, () {
-        print("User Cancelled Transaction");
+      BharatXTransactionManager.registerUser({
+        "phoneNumber": "+911234567890",
+        "id": "user-200",
+        "name": 'Christopher Chedeau',
+        "gender": 'Male',
+        "dob": '2016-02-05',
+        // dobFormat is mandatory when you supply dob
+        "dobFormat": 'yyyy-MM-dd',
+        "age": 20,
+        "address": '20, Tech Street, Bengaluru',
+        "customKey1": 'customValue1',
+        "customKey2": 'customValue2',
+      });
+      dynamic amountInPaise = 10000;
+      dynamic transactionId = "txnId01";
+      BharatXTransactionManager.confirmTransactionWithUser(
+          amountInPaise, transactionId, () {
+        // transaction success!
+      }, (s) {
+        // transaction cancelled by user or failed
       });
     } on PlatformException {
       print("Platform Exception");

@@ -1,4 +1,4 @@
-package tech.bharatx.bharatx_flutter_startup_example
+package tech.bharatx.startup_sdk_flutter_example
 
 import io.flutter.embedding.android.FlutterFragmentActivity
 
