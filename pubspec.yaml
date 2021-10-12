@@ -1,6 +1,6 @@
 name: startup_sdk_flutter
 description: Flutter wrapper for Startup Tier from BharatX SDK
-version: 3.1.2-release1
+version: 3.1.2-release2
 homepage: https://bharatx.tech/
 repository: https://github.com/bharatx-in/startup_sdk_flutter
 

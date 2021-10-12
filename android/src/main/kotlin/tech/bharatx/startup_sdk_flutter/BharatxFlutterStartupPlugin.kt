@@ -12,9 +12,9 @@ import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
-import tech.bharatx.common.BharatXTransactionManager
-import tech.bharatx.common.BharatXUserManager
-import tech.bharatx.common.getSerializedNameFromEnum
+import tech.bharatx.common.*
+import tech.bharatx.common.data_classes.CreditInfo
+import tech.bharatx.common.data_classes.CreditInfoFull
 
 /** BharatxFlutterStartupPlugin */
 class BharatxFlutterStartupPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
@@ -31,7 +31,7 @@ class BharatxFlutterStartupPlugin : FlutterPlugin, MethodCallHandler, ActivityAw
         applicationContext = flutterPluginBinding.applicationContext
     }
 
-    override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
+    override fun onMethodCall(@NonNull call: MethodCall, @NonNull methodResult: Result) {
         when (call.method) {
             "registerUser" -> {
                 val userManager = BharatXUserManager(applicationContext)
@@ -66,7 +66,47 @@ class BharatxFlutterStartupPlugin : FlutterPlugin, MethodCallHandler, ActivityAw
                     }
                 }
                 userManager.register()
-                result.success(null)
+                methodResult.success(null)
+            }
+            "displayBharatXProgressDialog" -> {
+                BharatXUiManager.displayBharatXProgressDialog(activity!!)
+                methodResult.success(null)
+            }
+            "closeBharatXProgressDialog" -> {
+                BharatXUiManager.closeBharatXProgressDialog()
+                methodResult.success(null)
+            }
+            "getUserCreditInfo" -> {
+                CreditAccessManager.getUserCreditInfo(
+                    activity!!,
+                    object : CreditAccessManager.OnCompleteListener<CreditInfo> {
+                        override fun onComplete(result: CreditInfo) {
+                            methodResult.success(
+                                hashMapOf(
+                                    "creditTaken" to result.creditTaken,
+                                    "creditLimit" to result.creditLimit
+                                )
+                            )
+                        }
+                    })
+            }
+            "getUserCreditInfoFull" -> {
+                CreditAccessManager.getUserCreditInfoFull(
+                    activity!!,
+                    object : CreditAccessManager.OnCompleteListener<CreditInfoFull> {
+                        override fun onComplete(result: CreditInfoFull) {
+                            methodResult.success(
+                                hashMapOf(
+                                    "creditTaken" to result.creditTaken,
+                                    "creditLimit" to result.creditLimit,
+                                    "totalOutstandingAmount" to result.totalOutstandingAmount,
+                                    "dueAmount" to result.dueAmount,
+                                    "currentCycleDueDate" to result.currentCycleDueDate,
+                                    "repaymentLink" to result.repaymentLink
+                                )
+                            )
+                        }
+                    })
             }
             "confirmTransactionWithUser" -> {
                 val confirmTransactionWithUserChannel =
@@ -88,10 +128,10 @@ class BharatxFlutterStartupPlugin : FlutterPlugin, MethodCallHandler, ActivityAw
                         }
                     }
                 )
-                result.success(null)
+                methodResult.success(null)
             }
             else -> {
-                result.notImplemented()
+                methodResult.notImplemented()
             }
         }
     }
