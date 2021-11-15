@@ -1,3 +1,7 @@
+## 3.1.4-release1
+
+* Upgrade `startup` Android SDK to 3.1.4
+
 ## 3.1.2-release2
 
 * Expose more methods from Android SDK to Flutter
